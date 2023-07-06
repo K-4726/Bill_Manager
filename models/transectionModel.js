@@ -2,15 +2,17 @@ const mongoose = require("mongoose");
 
 const transectionSchema = new mongoose.Schema(
   {
-    userid: {
+    product: {
       type: String,
-      required: true,
+    },
+    quantity: {
+      type: Number,
     },
     amount: {
       type: Number,
       required: [true, "amount is required"],
     },
-    type: {
+    status: {
       type: String,
       required: [true, "type is required"],
     },
@@ -18,12 +20,8 @@ const transectionSchema = new mongoose.Schema(
       type: String,
       requires: [true, "cat is required"],
     },
-    refrence: {
+    invoice: {
       type: String,
-    },
-    description: {
-      type: String,
-      required: [true, "desc is required"],
     },
     date: {
       type: Date,
