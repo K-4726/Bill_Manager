@@ -75,7 +75,7 @@ const HomePage = () => {
       try {
         const user = JSON.parse(localStorage.getItem("user"));
         setLoading(true);
-        const res = await axios.post("/api/v1/transections/get-transection", {
+        const res = await axios.post(`${process.env.REACT_APP_URL}/api/v1/transections/get-transection`, {
           userid: user._id,
           frequency,
           selectedDate,
@@ -85,6 +85,7 @@ const HomePage = () => {
         setLoading(false);
       } catch (error) {
         message.error("Ftech Issue With Tranction");
+        console.log(error);
       }
     };
     getAllTransactions();
@@ -94,7 +95,7 @@ const HomePage = () => {
   const handleDelete = async (record) => {
     try {
       setLoading(true);
-      await axios.post("/api/v1/transections/delete-transection", {
+      await axios.post(`${process.env.REACT_APP_URL}/api/v1/transections/delete-transection`, {
         transacationId: record._id,
       });
       setLoading(false);
@@ -108,11 +109,12 @@ const HomePage = () => {
 
   // form handling
   const handleSubmit = async (values) => {
+    console.log(values);
     try {
       const user = JSON.parse(localStorage.getItem("user"));
       setLoading(true);
       if (editable) {
-        await axios.post("/api/v1/transections/edit-transection", {
+        await axios.post(`${process.env.REACT_APP_URL}/api/v1/transections/edit-transection`, {
           payload: {
             ...values,
             userId: user._id,
@@ -122,17 +124,22 @@ const HomePage = () => {
         setLoading(false);
         message.success("Transaction Updated Successfully");
       } else {
-        await axios.post("/api/v1/transections/add-transection", {
+        await axios.post(`${process.env.REACT_APP_URL}/api/v1/transections/add-transection`, {
           ...values,
           userid: user._id,
         });
         setLoading(false);
+        console.log( {
+          ...values,
+          userid: user._id,
+        });
         message.success("Transaction Added Successfully");
       }
       setShowModal(false);
       setEditable(null);
     } catch (error) {
       setLoading(false);
+      console.log(error);
       message.error("please fill all fields");
     }
   };

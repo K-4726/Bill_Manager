@@ -11,9 +11,10 @@ const Login = () => {
   const navigate = useNavigate();
   //from submit
   const submitHandler = async (values) => {
+    console.log(values);
     try {
       setLoading(true);
-      const { data } = await axios.post("/api/v1/users/login", values);
+      const { data } = await axios.post(`${process.env.REACT_APP_URL}/api/v1/users/login`, values);
       setLoading(false);
       message.success("login success");
       localStorage.setItem(
