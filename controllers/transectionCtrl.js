@@ -1,5 +1,6 @@
 const transectionModel = require("../models/transectionModel");
 const moment = require("moment");
+
 const getAllTransection = async (req, res) => {
   try {
     const { frequency, selectedDate, type } = req.body;
@@ -16,13 +17,13 @@ const getAllTransection = async (req, res) => {
               $lte: selectedDate[1],
             },
           }),
-      userid: req.body.userid,
+      userid: req.body.userId,
       ...(type !== "all" && { type }),
     });
     res.status(200).json(transections);
   } catch (error) {
     console.log(error);
-    res.status(500).json(erorr);
+    res.status(500).json(error);
   }
 };
 

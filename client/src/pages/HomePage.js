@@ -74,17 +74,34 @@ const HomePage = () => {
     const getAllTransactions = async () => {
       try {
         const user = JSON.parse(localStorage.getItem("user"));
+        // console.log({userid: user._id,
+        //   frequency,
+        //   selectedDate,
+        //   type,});
         setLoading(true);
-        const res = await axios.post(`${process.env.REACT_APP_URL}/api/v1/transections/get-transection`, {
+        const token = localStorage.getItem("token");
+        console.log("Hereit is"+token);
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const payload = {
           userid: user._id,
           frequency,
           selectedDate,
           type,
-        });
+        };
+        console.log(payload);
+        const res = await axios.post(
+          `${process.env.REACT_APP_URL}/api/v1/transections/get-transection`,
+          payload,
+          config
+        );
         setAllTransection(res.data);
         setLoading(false);
       } catch (error) {
-        message.error("Ftech Issue With Tranction");
+        message.error("Fetch Issue With Tranction");
         console.log(error);
       }
     };

@@ -9,7 +9,7 @@ const loginController = async (req, res) => {
     if (!user) {
       return res
         .status(400)
-        .send({ message: "user not found", success: false });
+        .send({ message: "User not found", success: false });
     }
 
     const isMatch = await bcrypt.compare(req.body.password, user.password);
