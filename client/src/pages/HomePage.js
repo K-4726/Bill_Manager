@@ -80,7 +80,7 @@ const HomePage = () => {
         //   type,});
         setLoading(true);
         const token = localStorage.getItem("token");
-        console.log("Hereit is"+token);
+        console.log("Here it is "+token);
         const config = {
           headers: {
             Authorization: `Bearer ${token}`,

@@ -21,6 +21,9 @@ const Login = () => {
         "user",
         JSON.stringify({ ...data.user, password: "" })
       );
+      localStorage.setItem("token", data.token);
+      console.log('Token:', data.token);
+
       navigate("/");
     } catch (error) {
       setLoading(false);
