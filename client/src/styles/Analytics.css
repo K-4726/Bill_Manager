@@ -1,107 +1,39 @@
-.analytics-pie-chart {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 200px;
-  }
-  
-  .analytics-pie {
-    position: relative;
-    width: 100px;
-    height: 100px;
-  }
-  
-  .analytics-pie-slice {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    clip: rect(0, 50px, 100px, 0);
-  }
-  
-  .analytics-legend {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-  }
-  
-  .analytics-legend-item {
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-  }
-  
-  .analytics-legend-color {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    margin-right: 5px;
-  }
-  
-  .analytics-total-amount {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 150px;
-  }
-  
-  .analytics-total-amount h2 {
-    font-size: 36px;
-    color: #1890ff;
-  }
-  
-  .analytics-pie-chart .ant-card-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .analytics-total-amount .ant-card-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .analytics-pie-chart .ant-card-body > *:not(:last-child) {
-    margin-bottom: 10px;
-  }
-  .analytics-monthly {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  
-  .analytics-monthly-item {
-    width: calc(33.33% - 20px);
-    margin-bottom: 20px;
-    padding: 10px;
-    background-color: #f3f3f3;
-    border-radius: 4px;
-    text-align: center;
-    transition: transform 0.3s;
-  }
-  
-  .analytics-monthly-item:hover {
-    transform: scale(1.05);
-  }
-  
-  .analytics-monthly-label {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .analytics-monthly-count {
-    font-size: 14px;
-    color: #888;
-  }
-  
-  .analytics-monthly-amount {
-    font-size: 18px;
-    margin-top: 5px;
-  }
-  
-  
+/* Analytics.css */
+
+.analytics-total-amount {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.analytics-total-amount h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.analytics-monthly {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.analytics-monthly-item {
+  flex-basis: 48%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.analytics-monthly-label {
+  font-weight: bold;
+}
+
+.analytics-monthly-count,
+.analytics-monthly-amount {
+  margin-top: 5px;
+}

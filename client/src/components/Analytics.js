@@ -52,41 +52,13 @@ const Analytics = ({ allTransection }) => {
       <div className="row m-3">
         <div className="col-md-4">
           <Card title="Paid vs Unpaid Transactions">
-            <div className="analytics-pie-chart">
-              <div className="analytics-pie">
-                <div
-                  className="analytics-pie-slice"
-                  style={{
-                    transform: `rotate(${totalPaidPercent * 3.6}deg)`,
-                    backgroundColor: "#52c41a",
-                  }}
-                ></div>
-              </div>
-              <div className="analytics-pie">
-                <div
-                  className="analytics-pie-slice"
-                  style={{
-                    transform: `rotate(${totalUnpaidPercent * 3.6}deg)`,
-                    backgroundColor: "#f5222d",
-                  }}
-                ></div>
-              </div>
+          <div className="analytics-total-amount">
+              <h2>{totalPaidTransactions.length}</h2>
+              <h2>Paid transactions</h2>
             </div>
-            <div className="analytics-legend">
-              <div className="analytics-legend-item">
-                <span
-                  className="analytics-legend-color"
-                  style={{ backgroundColor: "#52c41a" }}
-                ></span>
-                <span className="analytics-legend-label">Paid</span>
-              </div>
-              <div className="analytics-legend-item">
-                <span
-                  className="analytics-legend-color"
-                  style={{ backgroundColor: "#f5222d" }}
-                ></span>
-                <span className="analytics-legend-label">Unpaid</span>
-              </div>
+            <div className="analytics-total-amount">
+              <h2>{totalPaidTransactions.length}</h2>
+              <h2>Unpaid transactions</h2>
             </div>
           </Card>
         </div>
@@ -112,9 +84,15 @@ const Analytics = ({ allTransection }) => {
             <div className="analytics-monthly">
               {Object.entries(monthlyAnalysisData).map(([month, data]) => (
                 <div key={month} className="analytics-monthly-item">
-                  <div className="analytics-monthly-label">Month {parseInt(month) + 1}</div>
-                  <div className="analytics-monthly-count">{data.count} transactions</div>
-                  <div className="analytics-monthly-amount">Ruppess: {data.amount}</div>
+                  <div className="analytics-monthly-label">
+                    Month {parseInt(month) + 1}
+                  </div>
+                  <div className="analytics-monthly-count">
+                    {data.count} transactions
+                  </div>
+                  <div className="analytics-monthly-amount">
+                    Rupees: {data.amount}
+                  </div>
                 </div>
               ))}
             </div>

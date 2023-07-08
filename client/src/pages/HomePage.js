@@ -11,6 +11,7 @@ import axios from "axios";
 import Spinner from "./../components/Spinner";
 import moment from "moment";
 import Analytics from "../components/Analytics";
+import '../styles/HeaderStyles.css'
 const { RangePicker } = DatePicker;
 
 const HomePage = () => {
@@ -191,8 +192,8 @@ const HomePage = () => {
           <h6>Select Type</h6>
           <Select value={type} onChange={(values) => setType(values)}>
             <Select.Option value="all">ALL</Select.Option>
-            <Select.Option value="income">INCOME</Select.Option>
-            <Select.Option value="expense">EXPENSE</Select.Option>
+            <Select.Option value="paid">Paid</Select.Option>
+            <Select.Option value="unpaid">Unpaid</Select.Option>
           </Select>
         </div>
         <div className="switch-icons">
@@ -211,7 +212,7 @@ const HomePage = () => {
         </div>
         <div>
           <button
-            className="btn btn-primary"
+            className="btn3"
             onClick={() => setShowModal(true)}
           >
             Add New
