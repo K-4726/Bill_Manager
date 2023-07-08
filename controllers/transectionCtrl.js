@@ -3,7 +3,7 @@ const moment = require("moment");
 
 const getAllTransection = async (req, res) => {
   try {
-    const { userid, frequency, selectedDate, type } = req.body;
+    const { frequency, selectedDate, type } = req.body;
     const transections = await transectionModel.find({
       ...(frequency !== "custom"
         ? {
@@ -49,11 +49,12 @@ const editTransection = async (req, res) => {
 };
 
 const addTransection = async (req, res) => {
+  console.log("I am requestbody"+req.body);
   try {
     // const newTransection = new transectionModel(req.body);
     const newTransection = new transectionModel(req.body);
     await newTransection.save();
-    res.status(201).send("Transection Created");
+    res.status(201).json({ message: "Transection Created" });
   } catch (error) {
     console.log(error);
     res.status(500).json(error);

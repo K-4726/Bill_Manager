@@ -36,8 +36,8 @@ const Register = () => {
           layout="vertical"
           onFinish={submitHandler}
         >
-          <h2>Register Form</h2>
-          <Form.Item label="Name" name="name">
+          <h2>Register Form is closed currently.</h2>
+          {/* <Form.Item label="Name" name="name">
             <Input type="text" required />
           </Form.Item>
           <Form.Item label="Email" name="email">
@@ -47,13 +47,13 @@ const Register = () => {
             <Input type="password" required />
           </Form.Item>
           <div className="d-flex justify-content-between">
-            <Link to="/login">Already Register? login here!</Link>
             <button className="btn ">Resgiter</button>
-          </div>
+          </div> */}
+          <Link className="linkreg" to="/login">Already Register? login here!</Link>
         </Form>
       </div>
     </>
   );
 };
-
+ 
 export default Register;

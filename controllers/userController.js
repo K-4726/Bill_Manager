@@ -22,9 +22,12 @@ const loginController = async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
+    const decodedToken = jwt.decode(token);
+    const userId = decodedToken.id;
+    console.log(userId);
     return res
       .status(200)
-      .send({ message: "Login Success", success: true, token });
+      .send({ message: "Login Success", success: true, token,userid:userId });
   } catch (error) {
     res.status(400).json({
       success: false,

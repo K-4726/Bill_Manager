@@ -6,10 +6,10 @@ const transectionSchema = new mongoose.Schema(
       type: String,
     },
     quantity: {
-      type: Number,
+      type: String,
     },
     amount: {
-      type: Number,
+      type: String,
       required: [true, "amount is required"],
     },
     status: {
@@ -20,12 +20,15 @@ const transectionSchema = new mongoose.Schema(
       type: String,
       requires: [true, "cat is required"],
     },
-    invoice: {
-      type: String,
-    },
     date: {
       type: Date,
       required: [true, "data is required"],
+    },
+    description:{
+      type: String,
+    },
+    invoice: {
+      type: String,
     },
   },
   { timestamps: true }

@@ -35,16 +35,24 @@ const HomePage = () => {
       dataIndex: "amount",
     },
     {
-      title: "Type",
-      dataIndex: "type",
+      title: "Product",
+      dataIndex: "product",
     },
     {
-      title: "Category",
-      dataIndex: "category",
+      title: "Quantity",
+      dataIndex: "quantity",
     },
     {
-      title: "Refrence",
-      dataIndex: "refrence",
+      title: "Status",
+      dataIndex: "status",
+    },
+    {
+      title: "Invoice",
+      dataIndex: "invoice",
+    },
+    {
+      title: "Cheque Number",
+      dataIndex: "description",
     },
     {
       title: "Actions",
@@ -74,6 +82,7 @@ const HomePage = () => {
     const getAllTransactions = async () => {
       try {
         const user = JSON.parse(localStorage.getItem("user"));
+        console.log("user is :"+ JSON.stringify( user));
         // console.log({userid: user._id,
         //   frequency,
         //   selectedDate,
@@ -126,15 +135,15 @@ const HomePage = () => {
 
   // form handling
   const handleSubmit = async (values) => {
-    console.log(values);
+    console.log("Hande submit: "+JSON.stringify(values));
     try {
       const user = JSON.parse(localStorage.getItem("user"));
+      console.log(user);
       setLoading(true);
       if (editable) {
         await axios.post(`${process.env.REACT_APP_URL}/api/v1/transections/edit-transection`, {
           payload: {
-            ...values,
-            userId: user._id,
+            ...values
           },
           transacationId: editable._id,
         });
@@ -142,13 +151,11 @@ const HomePage = () => {
         message.success("Transaction Updated Successfully");
       } else {
         await axios.post(`${process.env.REACT_APP_URL}/api/v1/transections/add-transection`, {
-          ...values,
-          userid: user._id,
+          ...values
         });
         setLoading(false);
-        console.log( {
-          ...values,
-          userid: user._id,
+        console.log({
+          ...values
         });
         message.success("Transaction Added Successfully");
       }
@@ -168,9 +175,9 @@ const HomePage = () => {
         <div>
           <h6>Select Frequency</h6>
           <Select value={frequency} onChange={(values) => setFrequency(values)}>
-            <Select.Option value="7">LAST 1 Week</Select.Option>
-            <Select.Option value="30">LAST 1 Month</Select.Option>
-            <Select.Option value="365">LAST 1 year</Select.Option>
+            <Select.Option value="7">Last 1 Week</Select.Option>
+            <Select.Option value="30">Last 1 Month</Select.Option>
+            <Select.Option value="365">Last 1 year</Select.Option>
             <Select.Option value="custom">custom</Select.Option>
           </Select>
           {frequency === "custom" && (
@@ -229,36 +236,40 @@ const HomePage = () => {
           onFinish={handleSubmit}
           initialValues={editable}
         >
+        <Form.Item label="Product" name="product">
+            <Input type="text" required />
+          </Form.Item>
+          <Form.Item label="Quantity" name="quantity">
+            <Input type="text" required />
+          </Form.Item>
           <Form.Item label="Amount" name="amount">
             <Input type="text" required />
           </Form.Item>
-          <Form.Item label="type" name="type">
+          <Form.Item label="Status" name="status">
             <Select>
-              <Select.Option value="income">Income</Select.Option>
-              <Select.Option value="expense">Expense</Select.Option>
+              <Select.Option value="paid">Paid</Select.Option>
+              <Select.Option value="unpaid">Unpaid</Select.Option>
             </Select>
           </Form.Item>
           <Form.Item label="Category" name="category">
             <Select>
               <Select.Option value="salary">Salary</Select.Option>
-              <Select.Option value="tip">Tip</Select.Option>
               <Select.Option value="project">Project</Select.Option>
-              <Select.Option value="food">Food</Select.Option>
-              <Select.Option value="movie">Movie</Select.Option>
               <Select.Option value="bills">Bills</Select.Option>
               <Select.Option value="medical">Medical</Select.Option>
               <Select.Option value="fee">Fee</Select.Option>
               <Select.Option value="tax">TAX</Select.Option>
+              <Select.Option value="Others">Others</Select.Option>
             </Select>
           </Form.Item>
           <Form.Item label="Date" name="date">
             <Input type="date" />
           </Form.Item>
-          <Form.Item label="Refrence" name="refrence">
+          <Form.Item label="Invoice" name="invoice">
             <Input type="text" required />
           </Form.Item>
-          <Form.Item label="Description" name="description">
-            <Input type="text" required />
+          <Form.Item label="Cheque number (if paid by cheque)" name="description">
+            <Input type="text"/>
           </Form.Item>
           <div className="d-flex justify-content-end">
             <button type="submit" className="btn btn-primary">

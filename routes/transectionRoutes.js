@@ -11,13 +11,13 @@ const router = express.Router();
 
 //routes
 //add transection POST MEthod
-router.post("/add-transection", authMiddleware, addTransection);
+router.post("/add-transection", addTransection);
 //Edit transection POST MEthod
-router.post("/edit-transection", authMiddleware, editTransection);
+router.post("/edit-transection", editTransection);
 //Delete transection POST MEthod
-router.post("/delete-transection", authMiddleware, deleteTransection);
+router.post("/delete-transection", deleteTransection);
 
 //get transections
-router.post("/get-transection", authMiddleware, getAllTransection);
+router.post("/get-transection", getAllTransection);
 
 module.exports = router;
