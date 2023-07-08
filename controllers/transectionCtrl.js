@@ -17,7 +17,8 @@ const getAllTransection = async (req, res) => {
               $lte: selectedDate[1],
             },
           }),
-      ...(type !== "all" && { type }),
+      ...(type === "Paid" && { status: "paid" }),
+      ...(type === "Unpaid" && { status: "unpaid" }),
     });
     res.status(200).json(transections);
   } catch (error) {
@@ -35,13 +36,14 @@ const deleteTransection = async (req, res) => {
     res.status(500).json(error);
   }
 };
+
 const editTransection = async (req, res) => {
   try {
     await transectionModel.findOneAndUpdate(
       { _id: req.body.transacationId },
       req.body.payload
     );
-    res.status(200).send("Edit SUccessfully");
+    res.status(200).send("Edit Successfully");
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
@@ -49,12 +51,11 @@ const editTransection = async (req, res) => {
 };
 
 const addTransection = async (req, res) => {
-  console.log("I am requestbody"+req.body);
+  console.log("I am request body", req.body);
   try {
-    // const newTransection = new transectionModel(req.body);
     const newTransection = new transectionModel(req.body);
     await newTransection.save();
-    res.status(201).json({ message: "Transection Created" });
+    res.status(201).json({ message: "Transaction Created" });
   } catch (error) {
     console.log(error);
     res.status(500).json(error);

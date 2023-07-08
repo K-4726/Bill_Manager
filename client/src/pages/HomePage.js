@@ -56,6 +56,10 @@ const HomePage = () => {
       dataIndex: "description",
     },
     {
+      title: "Cheque Date",
+      dataIndex: "category",
+    },
+    {
       title: "Actions",
       render: (text, record) => (
         <div>
@@ -90,23 +94,21 @@ const HomePage = () => {
         //   type,});
         setLoading(true);
         const token = localStorage.getItem("token");
-        console.log("Here it is "+token);
-        const config = {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        };
+        // console.log("Here it is "+token);
+        // const config = {
+        //   headers: {
+        //     Authorization: `Bearer ${token}`,
+        //   },
+        // };
         const payload = {
-          userid: user._id,
           frequency,
           selectedDate,
-          type,
+          status: type === "all" ? "" : type.toLowerCase(),
         };
         console.log(payload);
         const res = await axios.post(
           `${process.env.REACT_APP_URL}/api/v1/transections/get-transection`,
-          payload,
-          config
+          payload
         );
         setAllTransection(res.data);
         setLoading(false);
@@ -192,8 +194,8 @@ const HomePage = () => {
           <h6>Select Type</h6>
           <Select value={type} onChange={(values) => setType(values)}>
             <Select.Option value="all">ALL</Select.Option>
-            <Select.Option value="paid">Paid</Select.Option>
-            <Select.Option value="unpaid">Unpaid</Select.Option>
+            <Select.Option value="Paid">Paid</Select.Option>
+            <Select.Option value="Unpaid">Unpaid</Select.Option>
           </Select>
         </div>
         <div className="switch-icons">
@@ -252,17 +254,6 @@ const HomePage = () => {
               <Select.Option value="unpaid">Unpaid</Select.Option>
             </Select>
           </Form.Item>
-          <Form.Item label="Category" name="category">
-            <Select>
-              <Select.Option value="salary">Salary</Select.Option>
-              <Select.Option value="project">Project</Select.Option>
-              <Select.Option value="bills">Bills</Select.Option>
-              <Select.Option value="medical">Medical</Select.Option>
-              <Select.Option value="fee">Fee</Select.Option>
-              <Select.Option value="tax">TAX</Select.Option>
-              <Select.Option value="Others">Others</Select.Option>
-            </Select>
-          </Form.Item>
           <Form.Item label="Date" name="date">
             <Input type="date" />
           </Form.Item>
@@ -271,6 +262,18 @@ const HomePage = () => {
           </Form.Item>
           <Form.Item label="Cheque number (if paid by cheque)" name="description">
             <Input type="text"/>
+          </Form.Item>
+          <Form.Item label="Cheque date" name="category">
+            {/* <Select>
+              <Select.Option value="salary">Salary</Select.Option>
+              <Select.Option value="project">Project</Select.Option>
+              <Select.Option value="bills">Bills</Select.Option>
+              <Select.Option value="medical">Medical</Select.Option>
+              <Select.Option value="fee">Fee</Select.Option>
+              <Select.Option value="tax">TAX</Select.Option>
+              <Select.Option value="Others">Others</Select.Option>
+            </Select> */}
+            <Input type="text" required />
           </Form.Item>
           <div className="d-flex justify-content-end">
             <button type="submit" className="btn btn-primary">
