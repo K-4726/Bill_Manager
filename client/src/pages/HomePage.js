@@ -52,12 +52,8 @@ const HomePage = () => {
       dataIndex: "invoice",
     },
     {
-      title: "Cheque Number",
+      title: "Cheque Number & Cheque Date",
       dataIndex: "description",
-    },
-    {
-      title: "Cheque Date",
-      dataIndex: "category",
     },
     {
       title: "Actions",
@@ -156,10 +152,10 @@ const HomePage = () => {
         await axios.post(`${process.env.REACT_APP_URL}/api/v1/transections/add-transection`, {
           ...values
         });
-        setLoading(false);
         console.log({
           ...values
         });
+        setLoading(false);
         message.success("Transaction Added Successfully");
       }
       setShowModal(false);
@@ -260,10 +256,11 @@ const HomePage = () => {
           <Form.Item label="Invoice" name="invoice">
             <Input type="text" required />
           </Form.Item>
-          <Form.Item label="Cheque number (if paid by cheque)" name="description">
+          <Form.Item label="Cheque number & Date (if paid by cheque)" name="description">
             <Input type="text"/>
           </Form.Item>
-          <Form.Item label="Cheque date" name="category">
+          {/* <Form.Item label="Cheque date" name="cdate">
+          <Input type="text"/> */}
             {/* <Select>
               <Select.Option value="salary">Salary</Select.Option>
               <Select.Option value="project">Project</Select.Option>
@@ -273,8 +270,7 @@ const HomePage = () => {
               <Select.Option value="tax">TAX</Select.Option>
               <Select.Option value="Others">Others</Select.Option>
             </Select> */}
-            <Input type="text" required />
-          </Form.Item>
+          {/* </Form.Item> */}
           <div className="d-flex justify-content-end">
             <button type="submit" className="btn btn-primary">
               {" "}

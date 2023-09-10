@@ -1,5 +1,6 @@
 import React from "react";
 import { Progress, Card } from "antd";
+import { Pie } from "react-chartjs-2"; // Import the Pie component from react-chartjs-2
 import "../styles/Analytics.css";
 
 const Analytics = ({ allTransection }) => {
@@ -57,7 +58,7 @@ const Analytics = ({ allTransection }) => {
               <h2>Paid transactions</h2>
             </div>
             <div className="analytics-total-amount">
-              <h2>{totalPaidTransactions.length}</h2>
+              <h2>{totalUnpaidTransactions.length}</h2>
               <h2>Unpaid transactions</h2>
             </div>
           </Card>
